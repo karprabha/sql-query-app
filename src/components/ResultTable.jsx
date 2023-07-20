@@ -53,12 +53,14 @@ const ResultTable = ({ data, query }) => {
                     {bookmarked ? "Bookmarked" : "Bookmark"}
                 </button>
             </div>
-            <table>
-                <thead>
-                    <tr>{renderHeaders()}</tr>
-                </thead>
-                <tbody>{renderRows()}</tbody>
-            </table>
+            <div className="result-table-container">
+                <table>
+                    <thead>
+                        <tr>{renderHeaders()}</tr>
+                    </thead>
+                    <tbody>{renderRows()}</tbody>
+                </table>
+            </div>
         </div>
     );
 };
