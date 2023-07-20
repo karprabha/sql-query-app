@@ -23,14 +23,14 @@ const History = () => {
         setHistoryList(sortedHistory);
     }, []);
 
-    const handleViewQuery = (query) => {
-        setSelectedQuery(query);
-    };
-
     useEffect(() => {
         const fetchedResults = getQueryData(selectedQuery);
         setResults(fetchedResults);
     }, [selectedQuery]);
+
+    const handleViewQuery = (query) => {
+        setSelectedQuery(query);
+    };
 
     const handleCloseModal = () => {
         setSelectedQuery(null);
@@ -41,15 +41,15 @@ const History = () => {
         <div className="history-container">
             <h2>Query History</h2>
             <ul>
-                {historyList.map((item, index) => (
+                {historyList.map(({ query, timestamp }, index) => (
                     <li key={index}>
                         <div>
-                            <strong>Query:</strong> {item.query}
+                            <strong>Query:</strong> {query}
                         </div>
                         <div>
-                            <strong>Timestamp:</strong> {item.timestamp}
+                            <strong>Timestamp:</strong> {timestamp}
                         </div>
-                        <button onClick={() => handleViewQuery(item.query)}>
+                        <button onClick={() => handleViewQuery(query)}>
                             View
                         </button>
                     </li>
