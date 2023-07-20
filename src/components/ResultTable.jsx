@@ -1,4 +1,6 @@
 import { useState, useEffect } from "react";
+import TableHeader from "./TableHeader";
+import TableRow from "./TableRow";
 
 const ResultTable = ({ data, query }) => {
     const [bookmarked, setBookmarked] = useState(false);
@@ -23,42 +25,31 @@ const ResultTable = ({ data, query }) => {
         localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
     };
 
-    const renderRows = () => {
-        return data.rows.map((row, index) => (
-            <tr key={index}>
-                {row.map((cell, cellIndex) => (
-                    <td key={cellIndex}>{cell}</td>
-                ))}
-            </tr>
-        ));
+    const renderBookmarkButton = () => {
+        return (
+            <button
+                className={`bookmark-button ${bookmarked ? "bookmarked" : ""}`}
+                onClick={handleBookmarkClick}
+            >
+                {bookmarked ? "Bookmarked" : "Bookmark"}
+            </button>
+        );
     };
 
-    const renderHeaders = () => {
-        return data.columns.map((column, index) => (
-            <th key={index}>{column}</th>
-        ));
-    };
     return (
         <div>
             <div className="button-container">
                 <button className="export-button">Export</button>
-                <button
-                    className={
-                        bookmarked
-                            ? "bookmark-button bookmarked"
-                            : "bookmark-button"
-                    }
-                    onClick={handleBookmarkClick}
-                >
-                    {bookmarked ? "Bookmarked" : "Bookmark"}
-                </button>
+                {renderBookmarkButton()}
             </div>
             <div className="result-table-container">
                 <table>
-                    <thead>
-                        <tr>{renderHeaders()}</tr>
-                    </thead>
-                    <tbody>{renderRows()}</tbody>
+                    <TableHeader columns={data.columns} />
+                    <tbody>
+                        {data.rows.map((row, index) => (
+                            <TableRow key={index} row={row} />
+                        ))}
+                    </tbody>
                 </table>
             </div>
         </div>
