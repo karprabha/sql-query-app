@@ -2,35 +2,53 @@ import { useState, useEffect } from "react";
 import Modal from "../components/Modal";
 import ResultTable from "../components/ResultTable";
 import getQueryData from "../utils/getQueryData";
+import BookmarkItem from "../components/BookmarkItem";
+import EditBookmark from "../components/EditBookmark";
 
 const Bookmarks = () => {
     const [results, setResults] = useState(null);
     const [bookmarks, setBookmarks] = useState([]);
     const [selectedQuery, setSelectedQuery] = useState(null);
-    const [customBookmarkName, setCustomBookmarkName] = useState("");
-    const [showEditModal, setShowEditModal] = useState(false);
+    const [editModal, setEditModal] = useState(false);
 
     useEffect(() => {
         const bookmarkData =
             JSON.parse(localStorage.getItem("bookmarks")) || [];
         setBookmarks(bookmarkData);
-    }, [selectedQuery, customBookmarkName]);
+    }, []);
 
-    const handleRemoveBookmark = (query) => {
+    const handleBookmarkAction = (action, query) => {
+        switch (action) {
+            case "remove":
+                removeBookmark(query);
+                break;
+            case "view":
+                viewQuery(query);
+                break;
+            case "edit":
+                showEditModal(query);
+                break;
+            default:
+                break;
+        }
+    };
+
+    const removeBookmark = (query) => {
         const updatedBookmarks = bookmarks.filter(
             (bookmark) => bookmark.query !== query
         );
-
         localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
-
         setBookmarks(updatedBookmarks);
     };
 
-    const handleViewQuery = (query) => {
+    const viewQuery = (query) => {
         setSelectedQuery(query);
+        setEditModal(false);
     };
 
     useEffect(() => {
+        if (!selectedQuery) return;
+
         const fetchedResults = getQueryData(selectedQuery);
         setResults(fetchedResults);
     }, [selectedQuery]);
@@ -40,84 +58,59 @@ const Bookmarks = () => {
         setResults(null);
     };
 
-    const handleShowEditModal = (query) => {
+    const showEditModal = (query) => {
         setSelectedQuery(query);
-        setShowEditModal(true);
-
-        const bookmark = bookmarks.find((bookmark) => bookmark.query === query);
-        setCustomBookmarkName(bookmark?.name || "");
+        setEditModal(true);
     };
 
-    const handleCloseEditModal = () => {
-        setSelectedQuery(null);
-        setShowEditModal(false);
-    };
-
-    const handleRenameBookmark = () => {
-        const updatedBookmarks = bookmarks.map((bookmark) => {
-            if (bookmark.query === selectedQuery) {
-                return { ...bookmark, name: customBookmarkName };
-            }
-            return bookmark;
-        });
+    const handleRenameBookmark = (newName) => {
+        const updatedBookmarks = bookmarks.map((bookmark) =>
+            bookmark.query === selectedQuery
+                ? { ...bookmark, name: newName }
+                : bookmark
+        );
 
         localStorage.setItem("bookmarks", JSON.stringify(updatedBookmarks));
         setBookmarks(updatedBookmarks);
-        setShowEditModal(false);
-        handleCloseEditModal();
+        setSelectedQuery(null);
     };
 
-    const renderBookmarks = () => {
-        return bookmarks.map((bookmark, index) => (
-            <div key={index} className="bookmark-item">
-                <div className="bookmark-info">
-                    <p className="bookmark-name">
-                        {bookmark.name ? bookmark.name : bookmark.query}
-                    </p>
-                </div>
-                <button
-                    className="remove-button"
-                    onClick={() => handleRemoveBookmark(bookmark.query)}
-                >
-                    Remove
-                </button>
-                <button onClick={() => handleViewQuery(bookmark.query)}>
-                    View
-                </button>
-                <button onClick={() => handleShowEditModal(bookmark.query)}>
-                    Edit Name
-                </button>
-            </div>
-        ));
-    };
+    const shouldShowEditModal = () => selectedQuery && editModal;
+    const shouldShowViewModal = () => selectedQuery && !editModal;
 
     return (
         <div className="bookmark-container">
             <h2>Bookmarked Queries</h2>
             {bookmarks.length > 0 ? (
-                <div className="bookmark-list">{renderBookmarks()}</div>
+                <div className="bookmark-list">
+                    {bookmarks.map(({ query, name }, index) => (
+                        <BookmarkItem
+                            key={index}
+                            query={query}
+                            name={name}
+                            onAction={handleBookmarkAction}
+                        />
+                    ))}
+                </div>
             ) : (
                 <p>No bookmarked queries yet.</p>
             )}
-            {showEditModal && (
-                <Modal onClose={handleCloseEditModal}>
-                    <div>
-                        <input
-                            type="text"
-                            value={customBookmarkName}
-                            onChange={(event) =>
-                                setCustomBookmarkName(event.target.value)
-                            }
-                        />
-                        <button onClick={handleRenameBookmark}>Save</button>
-                    </div>
+            {shouldShowEditModal() && (
+                <Modal onClose={() => setSelectedQuery(null)}>
+                    <EditBookmark
+                        bookmark={bookmarks.find(
+                            (b) => b.query === selectedQuery
+                        )}
+                        onClose={() => setSelectedQuery(null)}
+                        onSave={handleRenameBookmark}
+                    />
                 </Modal>
             )}
-            {!showEditModal && selectedQuery && (
+            {shouldShowViewModal() && (
                 <Modal query={selectedQuery} onClose={handleCloseModal}>
                     {results && (
                         <ResultTable data={results} query={selectedQuery} />
-                    )}{" "}
+                    )}
                 </Modal>
             )}
         </div>
