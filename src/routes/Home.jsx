@@ -32,7 +32,9 @@ const Home = () => {
                 onExecute={handleExecuteQuery}
                 onClear={handleClearResults}
             />
-            {results && <ResultTable data={results} />}{" "}
+            {results && (
+                <ResultTable data={results} query={executedQuery.query} />
+            )}{" "}
         </div>
     );
 };
