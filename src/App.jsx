@@ -18,7 +18,7 @@ function App() {
                 <h1>SQL QUERY APP</h1>
                 <div id="hamburger">
                     <button type="button" onClick={toggleSidebar}>
-                        Menu
+                        ☰
                     </button>
                 </div>
             </div>
