@@ -53,6 +53,11 @@ const History = () => {
         setHistoryList(updatedHistory);
     };
 
+    const removeAllItems = () => {
+        localStorage.removeItem("history");
+        setHistoryList([]);
+    };
+
     const executeQuery = (query) => {
         setSelectedQuery(query);
         setViewQueryModal(false);
@@ -74,6 +79,17 @@ const History = () => {
     return (
         <div className="history-container">
             <h2>Query History</h2>
+
+            {historyList.length > 0 ? (
+                <button
+                    onClick={removeAllItems}
+                    className="clear-history-button"
+                >
+                    Clear History
+                </button>
+            ) : (
+                <p>No history items yet.</p>
+            )}
 
             {historyList.map(({ query, timestamp, id }) => (
                 <HistoryItem
