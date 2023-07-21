@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { CSVLink } from "react-csv";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
+import VirtualizedTable from "./VirtualizedTable";
 
 const ResultTable = ({ data, query }) => {
     const [bookmarked, setBookmarked] = useState(false);
@@ -57,16 +58,20 @@ const ResultTable = ({ data, query }) => {
                 </button>
                 {renderBookmarkButton()}
             </div>
-            <div className="result-table-container">
-                <table>
-                    <TableHeader columns={data.columns} />
-                    <tbody>
-                        {data.rows.map((row, index) => (
-                            <TableRow key={index} row={row} />
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+            {data.rows.length > 80 ? (
+                <VirtualizedTable rows={data.rows} columns={data.columns} />
+            ) : (
+                <div className="result-table-container">
+                    <table>
+                        <TableHeader columns={data.columns} />
+                        <tbody>
+                            {data.rows.map((row, index) => (
+                                <TableRow key={index} row={row} />
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            )}
         </div>
     );
 };
