@@ -78,12 +78,12 @@ const History = () => {
 
     return (
         <div className="history-container">
-            <h2>Query History</h2>
+            <h2 className="section-title">Query History</h2>
 
             {historyList.length > 0 ? (
                 <button
                     onClick={removeAllItems}
-                    className="clear-history-button"
+                    className="button clear-history-button"
                 >
                     Clear History
                 </button>

@@ -5,33 +5,33 @@ const BookmarkItem = ({ query, name, onAction }) => {
     const truncatedQuery = truncateString(query, 40);
 
     return (
-        <div className="bookmark-item">
-            <div className="bookmark-info">
+        <div className="item bookmark-item">
+            <div className="info bookmark-info">
                 <p className="bookmark-name">
                     {truncatedName || truncatedQuery}
                 </p>
             </div>
             <div className="button-container">
                 <button
-                    className="remove-button"
+                    className="button remove-button"
                     onClick={() => onAction("remove", query)}
                 >
                     Remove
                 </button>
                 <button
-                    className="view-button"
+                    className="button view-button"
                     onClick={() => onAction("view", query)}
                 >
                     View
                 </button>
                 <button
-                    className="execute-button"
+                    className="button execute-button"
                     onClick={() => onAction("execute", query)}
                 >
                     Execute
                 </button>
                 <button
-                    className="edit-button"
+                    className="button edit-button"
                     onClick={() => onAction("edit", query)}
                 >
                     Edit Name

@@ -6,8 +6,10 @@ function App() {
 
     return (
         <>
-            <div id="sidebar">
+            <div id="header">
                 <h1>SQL QUERY APP</h1>
+            </div>
+            <div id="sidebar">
                 <nav>
                     <ul>
                         <li>

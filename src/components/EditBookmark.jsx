@@ -12,7 +12,7 @@ const EditBookmark = ({ bookmark, onClose, onSave }) => {
     return (
         <div>
             <h3>Edit Name</h3>
-            <div>
+            <div className="rename-bookmark">
                 <input
                     type="text"
                     value={customBookmarkName}
@@ -21,8 +21,15 @@ const EditBookmark = ({ bookmark, onClose, onSave }) => {
                     }
                 />
 
-                <button onClick={handleRenameBookmark}>Save</button>
-                <button onClick={onClose}>Cancel</button>
+                <div className="button-container">
+                    <button
+                        onClick={handleRenameBookmark}
+                        className="button save-button"
+                    >
+                        Save
+                    </button>
+                    <button onClick={onClose}>Cancel</button>
+                </div>
             </div>
         </div>
     );

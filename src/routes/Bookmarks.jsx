@@ -97,7 +97,7 @@ const Bookmarks = () => {
 
     return (
         <div className="bookmark-container">
-            <h2>Bookmarked Queries</h2>
+            <h2 className="section-title">Bookmarked Queries</h2>
             {bookmarks.length > 0 ? (
                 <div className="bookmark-list">
                     {bookmarks.map(({ query, name }, index) => (
@@ -119,7 +119,6 @@ const Bookmarks = () => {
                     <QueryView query={selectedQuery} />
                 </Modal>
             )}
-
             {shouldShowEditModal() && (
                 <Modal onClose={() => setSelectedQuery(null)}>
                     <EditBookmark
