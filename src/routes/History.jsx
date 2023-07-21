@@ -3,12 +3,13 @@ import Modal from "../components/Modal";
 import ResultTable from "../components/ResultTable";
 import getQueryData from "../utils/getQueryData";
 import QueryView from "../components/QueryView";
+import HistoryItem from "../components/HistoryItem";
 
 const History = () => {
     const [results, setResults] = useState(null);
     const [historyList, setHistoryList] = useState([]);
     const [selectedQuery, setSelectedQuery] = useState(null);
-    const [viewQuery, setViewQuery] = useState(false);
+    const [viewQueryModal, setViewQueryModal] = useState(false);
 
     useEffect(() => {
         const historyData = JSON.parse(localStorage.getItem("history")) || [];
@@ -30,14 +31,36 @@ const History = () => {
         setResults(fetchedResults);
     }, [selectedQuery]);
 
-    const handleExecuteQuery = (query) => {
-        setSelectedQuery(query);
-        setViewQuery(false);
+    const handleHistoryAction = (action, query, id) => {
+        switch (action) {
+            case "remove":
+                removeItem(id);
+                break;
+            case "view":
+                viewQuery(query);
+                break;
+            case "execute":
+                executeQuery(query);
+                break;
+            default:
+                break;
+        }
     };
 
-    const handleViewQuery = (query) => {
+    const removeItem = (id) => {
+        const updatedHistory = historyList.filter((item) => item.id !== id);
+        localStorage.setItem("history", JSON.stringify(updatedHistory));
+        setHistoryList(updatedHistory);
+    };
+
+    const executeQuery = (query) => {
         setSelectedQuery(query);
-        setViewQuery(true);
+        setViewQueryModal(false);
+    };
+
+    const viewQuery = (query) => {
+        setSelectedQuery(query);
+        setViewQueryModal(true);
     };
 
     const handleCloseModal = () => {
@@ -45,33 +68,23 @@ const History = () => {
         setResults(null);
     };
 
-    const shouldShowExecuteModal = () => selectedQuery && !viewQuery;
-    const shouldShowViewModal = () => selectedQuery && viewQuery;
+    const shouldShowExecuteModal = () => selectedQuery && !viewQueryModal;
+    const shouldShowViewModal = () => selectedQuery && viewQueryModal;
 
     return (
         <div className="history-container">
             <h2>Query History</h2>
-            <ul>
-                {historyList.map(({ query, timestamp }, index) => (
-                    <li key={index}>
-                        <div>
-                            <strong>Query:</strong>{" "}
-                            {query.length > 20
-                                ? query.substring(0, 20) + "..."
-                                : query}
-                        </div>
-                        <div>
-                            <strong>Timestamp:</strong> {timestamp}
-                        </div>
-                        <button onClick={() => handleViewQuery(query)}>
-                            View
-                        </button>
-                        <button onClick={() => handleExecuteQuery(query)}>
-                            Execute
-                        </button>
-                    </li>
-                ))}
-            </ul>
+
+            {historyList.map(({ query, timestamp, id }) => (
+                <HistoryItem
+                    key={id}
+                    id={id}
+                    query={query}
+                    timestamp={timestamp}
+                    onAction={handleHistoryAction}
+                />
+            ))}
+
             {shouldShowViewModal() && (
                 <Modal query={selectedQuery} onClose={handleCloseModal}>
                     <QueryView query={selectedQuery} />

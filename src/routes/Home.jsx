@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import QueryInput from "../components/QueryInput";
 import ResultTable from "../components/ResultTable";
 import getQueryData from "../utils/getQueryData";
+import { v4 as uuidv4 } from "uuid";
 
 const Home = () => {
     const [results, setResults] = useState(null);
@@ -9,7 +10,7 @@ const Home = () => {
 
     const handleExecuteQuery = (query) => {
         const timestamp = new Date().toLocaleString();
-        setExecutedQuery({ query, timestamp });
+        setExecutedQuery({ query, timestamp, id: uuidv4() });
     };
 
     useEffect(() => {
