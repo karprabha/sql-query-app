@@ -310,6 +310,14 @@ td {
     overflow-x: auto;
 }
 
+.virtualized-table-container {
+    margin-top: 20px;
+    max-height: 60vh;
+    max-width: 60vw;
+    overflow-y: hidden;
+    overflow-x: hidden;
+}
+
 /* Query View */
 .query-view-container {
     border-radius: 5px;
