@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import Modal from "../components/Modal";
 import ResultTable from "../components/ResultTable";
 import getQueryData from "../utils/getQueryData";
+import QueryView from "../components/QueryView";
 
 const History = () => {
     const [results, setResults] = useState(null);
     const [historyList, setHistoryList] = useState([]);
     const [selectedQuery, setSelectedQuery] = useState(null);
+    const [viewQuery, setViewQuery] = useState(false);
 
     useEffect(() => {
         const historyData = JSON.parse(localStorage.getItem("history")) || [];
@@ -28,14 +30,23 @@ const History = () => {
         setResults(fetchedResults);
     }, [selectedQuery]);
 
+    const handleExecuteQuery = (query) => {
+        setSelectedQuery(query);
+        setViewQuery(false);
+    };
+
     const handleViewQuery = (query) => {
         setSelectedQuery(query);
+        setViewQuery(true);
     };
 
     const handleCloseModal = () => {
         setSelectedQuery(null);
         setResults(null);
     };
+
+    const shouldShowExecuteModal = () => selectedQuery && !viewQuery;
+    const shouldShowViewModal = () => selectedQuery && viewQuery;
 
     return (
         <div className="history-container">
@@ -44,7 +55,10 @@ const History = () => {
                 {historyList.map(({ query, timestamp }, index) => (
                     <li key={index}>
                         <div>
-                            <strong>Query:</strong> {query}
+                            <strong>Query:</strong>{" "}
+                            {query.length > 20
+                                ? query.substring(0, 20) + "..."
+                                : query}
                         </div>
                         <div>
                             <strong>Timestamp:</strong> {timestamp}
@@ -52,11 +66,19 @@ const History = () => {
                         <button onClick={() => handleViewQuery(query)}>
                             View
                         </button>
+                        <button onClick={() => handleExecuteQuery(query)}>
+                            Execute
+                        </button>
                     </li>
                 ))}
             </ul>
+            {shouldShowViewModal() && (
+                <Modal query={selectedQuery} onClose={handleCloseModal}>
+                    <QueryView query={selectedQuery} />
+                </Modal>
+            )}
 
-            {selectedQuery && (
+            {shouldShowExecuteModal() && (
                 <Modal query={selectedQuery} onClose={handleCloseModal}>
                     {results && (
                         <ResultTable data={results} query={selectedQuery} />
