@@ -11,13 +11,19 @@ const EditBookmark = ({ bookmark, onClose, onSave }) => {
 
     return (
         <div>
-            <input
-                type="text"
-                value={customBookmarkName}
-                onChange={(event) => setCustomBookmarkName(event.target.value)}
-            />
-            <button onClick={handleRenameBookmark}>Save</button>
-            <button onClick={onClose}>Cancel</button>
+            <h3>Edit Name</h3>
+            <div>
+                <input
+                    type="text"
+                    value={customBookmarkName}
+                    onChange={(event) =>
+                        setCustomBookmarkName(event.target.value)
+                    }
+                />
+
+                <button onClick={handleRenameBookmark}>Save</button>
+                <button onClick={onClose}>Cancel</button>
+            </div>
         </div>
     );
 };

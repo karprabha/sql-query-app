@@ -11,15 +11,32 @@ const BookmarkItem = ({ query, name, onAction }) => {
                     {truncatedName || truncatedQuery}
                 </p>
             </div>
-            <button
-                className="remove-button"
-                onClick={() => onAction("remove", query)}
-            >
-                Remove
-            </button>
-            <button onClick={() => onAction("view", query)}>View</button>
-            <button onClick={() => onAction("execute", query)}>Execute</button>
-            <button onClick={() => onAction("edit", query)}>Edit Name</button>
+            <div className="button-container">
+                <button
+                    className="remove-button"
+                    onClick={() => onAction("remove", query)}
+                >
+                    Remove
+                </button>
+                <button
+                    className="view-button"
+                    onClick={() => onAction("view", query)}
+                >
+                    View
+                </button>
+                <button
+                    className="execute-button"
+                    onClick={() => onAction("execute", query)}
+                >
+                    Execute
+                </button>
+                <button
+                    className="edit-button"
+                    onClick={() => onAction("edit", query)}
+                >
+                    Edit Name
+                </button>
+            </div>
         </div>
     );
 };

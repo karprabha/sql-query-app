@@ -110,7 +110,9 @@ const Bookmarks = () => {
                     ))}
                 </div>
             ) : (
-                <p>No bookmarked queries yet.</p>
+                <p className="no-bookmark-message">
+                    No bookmarked queries yet.
+                </p>
             )}
             {shouldShowViewModal() && (
                 <Modal query={selectedQuery} onClose={handleCloseModal}>

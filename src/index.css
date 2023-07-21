@@ -433,3 +433,83 @@ h2 {
     width: 60vw;
     height: 60vh;
 }
+
+/* Bookmark */
+
+.bookmark-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    background-color: #f7f7f7;
+}
+
+.bookmark-info {
+    flex: 1;
+}
+
+.bookmark-info div {
+    margin-bottom: 5px;
+}
+
+.bookmark-info strong {
+    margin-right: 5px;
+}
+
+.bookmark-info .button-container {
+    display: flex;
+}
+
+.bookmark-item .button-container button {
+    margin-left: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+}
+
+.bookmark-item .view-button {
+    background-color: #009688;
+}
+
+.bookmark-item .view-button:hover {
+    background-color: #00a699;
+}
+
+.bookmark-item .execute-button {
+    background-color: #4caf50;
+}
+
+.bookmark-item .execute-button:hover {
+    background-color: #46a049;
+}
+
+.bookmark-item .remove-button {
+    background-color: #f44336;
+}
+
+.bookmark-item .remove-button:hover {
+    background-color: #d32f2f;
+}
+
+.bookmark-item .edit-button {
+    background-color: #007bff;
+}
+
+.bookmark-item .edit-button:hover {
+    background-color: #0066d3;
+}
+
+.no-bookmark-message {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #555;
+}
+
+.no-bookmark-message::before {
+    content: "\1F614";
+    font-style: normal;
+    margin-right: 5px;
+}
