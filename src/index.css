@@ -603,4 +603,8 @@ td {
     .item {
         flex-direction: column;
     }
+
+    .rename-bookmark {
+        width: 100%;
+    }
 }
