@@ -316,6 +316,7 @@ td {
     max-width: 60vw;
     overflow-y: hidden;
     overflow-x: hidden;
+
 }
 
 /* Query View */
@@ -444,6 +445,12 @@ h2 {
 
 /* Bookmark */
 
+.bookmark-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
 .bookmark-item {
     display: flex;
     justify-content: space-between;
@@ -520,4 +527,42 @@ h2 {
     content: "\1F614";
     font-style: normal;
     margin-right: 5px;
+}
+
+/* Error Page */
+/* error-page.css */
+#error-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+#error-page h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+#error-page p {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+#error-page a {
+    font-size: 1.2rem;
+    color: white;
+    text-decoration: none;
+}
+
+#error-page button {
+    cursor: pointer;
+    color: white;
+    background-color: #007bff;
+}
+
+#error-page button:hover {
+    background-color: #0066d3;
 }
