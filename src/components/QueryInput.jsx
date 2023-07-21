@@ -42,35 +42,39 @@ const QueryInput = ({ onExecute, onClear }) => {
                     value={query}
                     onChange={handleQueryChange}
                     placeholder="Enter your SQL query..."
-                    className={isValidQuery ? "valid" : "invalid"}
                 />
-
-                <button
-                    type="submit"
-                    className={
-                        isValidQuery ? "execute-button valid" : "execute-button"
-                    }
-                >
-                    Execute
-                </button>
-                <button
-                    type="button"
-                    onClick={handleClear}
-                    className="clear-button"
-                >
-                    Clear
-                </button>
-                <select
-                    value={selectedPredefinedQuery}
-                    onChange={handlePredefinedQueryChange}
-                >
-                    <option value="">Select a predefined query</option>
-                    {predefinedQueries.map((query, index) => (
-                        <option key={index} value={query}>
-                            {query}
-                        </option>
-                    ))}
-                </select>
+                <div className="input-options-and-btns">
+                    <div className="input-btn-contianer">
+                        <button
+                            type="submit"
+                            className={
+                                isValidQuery
+                                    ? "execute-button valid"
+                                    : "execute-button"
+                            }
+                        >
+                            Execute
+                        </button>
+                        <button
+                            type="button"
+                            onClick={handleClear}
+                            className="clear-button"
+                        >
+                            Clear
+                        </button>
+                    </div>
+                    <select
+                        value={selectedPredefinedQuery}
+                        onChange={handlePredefinedQueryChange}
+                    >
+                        <option value="">Select a predefined query</option>
+                        {predefinedQueries.map((query, index) => (
+                            <option key={index} value={query}>
+                                {query}
+                            </option>
+                        ))}
+                    </select>
+                </div>
             </div>
         </form>
     );

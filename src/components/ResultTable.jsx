@@ -50,6 +50,7 @@ const ResultTable = ({ data, query }) => {
                         data={csvData.rows}
                         headers={csvData.columns}
                         filename={"exportedData.csv"}
+                        style={{ textDecoration: "none", color: "white" }}
                     >
                         Export
                     </CSVLink>
