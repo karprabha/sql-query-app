@@ -1,6 +1,9 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet, NavLink } from "react-router-dom";
 
 function App() {
+    const resolveNavLinkClassName = ({ isActive, isPending }) =>
+        isActive ? "active" : isPending ? "pending" : "";
+
     return (
         <>
             <div id="sidebar">
@@ -8,13 +11,28 @@ function App() {
                 <nav>
                     <ul>
                         <li>
-                            <Link to={`/`}>Home</Link>
+                            <NavLink
+                                to={`/`}
+                                className={resolveNavLinkClassName}
+                            >
+                                Home
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to={`/history`}>History</Link>
+                            <NavLink
+                                to={`/history`}
+                                className={resolveNavLinkClassName}
+                            >
+                                History
+                            </NavLink>
                         </li>
                         <li>
-                            <Link to={`/bookmarks`}>Bookmarks</Link>
+                            <NavLink
+                                to={`/bookmarks`}
+                                className={resolveNavLinkClassName}
+                            >
+                                Bookmarks
+                            </NavLink>
                         </li>
                     </ul>
                 </nav>
