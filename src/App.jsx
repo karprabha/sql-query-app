@@ -1,6 +1,14 @@
+import { useState } from "react";
 import { Outlet, NavLink } from "react-router-dom";
 
 function App() {
+    const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+    const toggleSidebar = () => {
+        console.log("hi");
+        setIsSidebarOpen(!isSidebarOpen);
+    };
+
     const resolveNavLinkClassName = ({ isActive, isPending }) =>
         isActive ? "active" : isPending ? "pending" : "";
 
@@ -8,8 +16,16 @@ function App() {
         <>
             <div id="header">
                 <h1>SQL QUERY APP</h1>
+                <div id="hamburger">
+                    <button type="button" onClick={toggleSidebar}>
+                        Menu
+                    </button>
+                </div>
             </div>
-            <div id="sidebar">
+            <div
+                id="sidebar"
+                className={`${isSidebarOpen ? "open-sidebar" : ""}`}
+            >
                 <nav>
                     <ul>
                         <li>
