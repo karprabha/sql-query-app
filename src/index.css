@@ -331,3 +331,105 @@ td {
     height: 60vh;
     border-radius: 5px;
 }
+
+/* History */
+.history-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    background-color: #f7f7f7;
+}
+
+.item-info {
+    flex: 1;
+}
+
+.item-info div {
+    margin-bottom: 5px;
+}
+
+.item-info strong {
+    margin-right: 5px;
+}
+
+.button-container {
+    display: flex;
+}
+
+.history-item .button-container button {
+    margin-left: 5px;
+    padding: 8px 15px;
+    cursor: pointer;
+    border: none;
+    color: #fff;
+}
+
+.history-item .view-button {
+    background-color: #009688;
+}
+
+.history-item .view-button:hover {
+    background-color: #00a699;
+}
+
+.history-item .execute-button {
+    background-color: #4caf50;
+}
+
+.history-item .execute-button:hover {
+    background-color: #46a049;
+}
+
+.history-item .remove-button {
+    background-color: #f44336;
+}
+
+.history-item .remove-button:hover {
+    background-color: #d32f2f;
+}
+
+.history-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.clear-history-button {
+    padding: 8px 15px;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.clear-history-button:hover {
+    background-color: #d32f2f;
+}
+
+.data-not-found-message,
+.no-history-message {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #555;
+}
+
+.no-history-message::before {
+    content: "\1F614";
+    font-style: normal;
+    margin-right: 5px;
+}
+
+.data-not-found-message {
+    width: 60vw;
+    height: 60vh;
+}

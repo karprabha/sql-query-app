@@ -88,7 +88,7 @@ const History = () => {
                     Clear History
                 </button>
             ) : (
-                <p>No history items yet.</p>
+                <p className="no-history-message">No history items yet.</p>
             )}
 
             {historyList.map(({ query, timestamp, id }) => (
@@ -109,9 +109,13 @@ const History = () => {
 
             {shouldShowExecuteModal() && (
                 <Modal query={selectedQuery} onClose={handleCloseModal}>
-                    {results && (
+                    {results ? (
                         <ResultTable data={results} query={selectedQuery} />
-                    )}{" "}
+                    ) : (
+                        <p className="data-not-found-message">
+                            Unable to Fetch Data
+                        </p>
+                    )}
                 </Modal>
             )}
         </div>

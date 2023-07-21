@@ -13,13 +13,26 @@ const HistoryItem = ({ query, id, timestamp, onAction }) => {
                     <strong>Timestamp:</strong> {timestamp}
                 </div>
             </div>
-            <button onClick={() => onAction("view", query, id)}>View</button>
-            <button onClick={() => onAction("execute", query, id)}>
-                Execute
-            </button>
-            <button onClick={() => onAction("remove", query, id)}>
-                Remove
-            </button>
+            <div className="button-container">
+                <button
+                    className="view-button"
+                    onClick={() => onAction("view", query, id)}
+                >
+                    View
+                </button>
+                <button
+                    className="execute-button"
+                    onClick={() => onAction("execute", query, id)}
+                >
+                    Execute
+                </button>
+                <button
+                    className="remove-button"
+                    onClick={() => onAction("remove", query, id)}
+                >
+                    Remove
+                </button>
+            </div>
         </div>
     );
 };
