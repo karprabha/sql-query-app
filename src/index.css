@@ -3,6 +3,25 @@
     padding: 0;
 }
 
+:root {
+    --primary: #2c3e50;
+    --primary-light: #82a3c7;
+    --side-text: #ffffff;
+    --highlight: #3498db;
+    --hover: #3a5169;
+    --hover-light: #6889ab;
+    --border: #34495e;
+    --code-light: #f9f9f9;
+    --border-light: #ccc;
+    --active-link: #e74c3c;
+    --button-remove-primary: #f44336;
+    --button-remove-hover: #d32f2f;
+    --button-success-primary: #4caf50;
+    --button-success-hover: #46a049;
+    --button-primary: #007bff;
+    --button-hover: #0066d3;
+}
+
 body {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
@@ -17,7 +36,7 @@ html,
 body {
     height: 100%;
     line-height: 1.5;
-    color: #121212;
+    color: var(--primary-text-color);
 }
 
 textarea,
@@ -29,13 +48,13 @@ button {
     border-radius: 8px;
     padding: 0.5rem 0.75rem;
     box-shadow: 0 0px 1px hsla(0, 0%, 0%, 0.2), 0 1px 2px hsla(0, 0%, 0%, 0.2);
-    background-color: white;
+    background-color: var(--side-text);
     line-height: 1.5;
     margin: 0;
 }
 
 button {
-    color: #3992ff;
+    color: var(--button-primary);
     font-weight: 500;
 }
 
@@ -64,16 +83,17 @@ h2 {
 
 /* Header */
 #header {
-    background-color: rebeccapurple;
+    background-color: var(--primary);
     grid-column: 1/3;
+    color: var(--side-text);
 }
 
 /* Sidebar section */
 
 #sidebar {
     width: 18rem;
-    background-color: #f7f7f7;
-    border-right: solid 1px #e3e3e3;
+    background-color: var(--primary-light);
+    border-right: solid 1px var(--border-light);
     display: flex;
     flex-direction: column;
 }
@@ -83,16 +103,6 @@ h2 {
     padding-right: 2rem;
 }
 
-#sidebar h1 {
-    font-size: 1rem;
-    font-weight: 500;
-    display: flex;
-    align-items: center;
-    padding: 1rem 2rem;
-    border-bottom: 1px solid #e3e3e3;
-    line-height: 1;
-}
-
 #sidebar nav {
     flex: 1;
     overflow: auto;
@@ -100,7 +110,7 @@ h2 {
 }
 
 i {
-    color: #818181;
+    color: var(--primary-light);
 }
 
 #sidebar ul {
@@ -128,16 +138,16 @@ i {
 }
 
 #sidebar nav a:hover {
-    background: #e3e3e3;
+    background: var(--hover-light);
 }
 
 #sidebar nav a.active {
-    background: hsl(224, 98%, 58%);
-    color: white;
+    background: var(--hover);
+    color: var(--side-text);
 }
 
 #sidebar nav a.pending {
-    color: hsl(224, 98%, 58%);
+    color: var(--hover);
 }
 
 
@@ -190,6 +200,10 @@ i {
     gap: 8px;
 }
 
+.input-btn-contianer>button {
+    cursor: pointer;
+}
+
 textarea {
     min-width: 270px;
     width: 40vw;
@@ -197,35 +211,34 @@ textarea {
     resize: none;
     padding: 12px;
     border-radius: 0;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-light);
     overflow: hidden;
     box-sizing: border-box;
 }
 
 select {
     padding: 5px;
-    border: 1px solid #ccc;
-}
-
-.valid {
-    border: 1px solid green;
-}
-
-.invalid {
-    border: 1px solid red;
+    border: 1px solid var(--border-light);
 }
 
 .execute-button {
-    background-color: red;
-    color: white;
+    background-color: var(--button-remove-primary);
+    color: var(--side-text);
     border: none;
     cursor: pointer;
 }
 
-.execute-button.valid {
-    background-color: green;
+.execute-button:hover {
+    background-color: var(--button-remove-hover);
 }
 
+.execute-button.valid {
+    background-color: var(--button-success-primary);
+}
+
+.execute-button.valid:hover {
+    background-color: var(--button-success-hover);
+}
 
 /* resultTable.css */
 .table-container {
@@ -235,13 +248,13 @@ select {
 table {
     width: 100%;
     border-collapse: collapse;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-light);
 }
 
 th,
 td {
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-light);
     text-align: left;
 }
 
@@ -259,18 +272,22 @@ td {
 .export-button,
 .bookmark-button {
     padding: 8px 15px;
-    background-color: #007bff;
-    color: white;
+    background-color: var(--button-primary);
+    color: var(--side-text);
     border: none;
     cursor: pointer;
 }
 
 .bookmark-button.bookmarked {
-    background-color: green;
+    background-color: var(--button-success-primary);
+}
+
+.bookmark-button.bookmarked:hover {
+    background-color: var(--button-success-hover);
 }
 
 .bookmark-button:disabled {
-    background-color: gray;
+    background-color: var(--border);
     cursor: not-allowed;
 }
 
@@ -290,7 +307,7 @@ td {
 }
 
 .modal-content {
-    background-color: white;
+    background-color: var(--side-text);
     padding: 20px;
     border-radius: 4px;
     box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
@@ -304,15 +321,15 @@ td {
     border: none;
     padding: 8px 20px;
     background: transparent;
-    color: white;
+    color: var(--side-text);
     box-shadow: none;
     cursor: pointer;
 }
 
 .modal-close:hover {
     box-shadow: none;
-    background-color: white;
-    color: black;
+    background-color: var(--side-text);
+    color: var(--primary);
 }
 
 /* resultTable.css */
@@ -347,8 +364,8 @@ td {
     font-family: 'Courier New', Courier, monospace;
     white-space: pre-wrap;
     overflow-wrap: break-word;
-    background-color: #f9f9f9;
-    border: 1px solid #ccc;
+    background-color: var(--code-light);
+    border: 1px solid var(--border-light);
     padding: 10px;
     margin-top: 10px;
     width: 60vw;
@@ -369,9 +386,9 @@ td {
     justify-content: space-between;
     align-items: center;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid var(--border-light);
     margin-bottom: 10px;
-    background-color: #f7f7f7;
+    background-color: var(--code-light);
 }
 
 .info {
@@ -392,45 +409,45 @@ td {
     padding: 8px 15px;
     cursor: pointer;
     border: none;
-    color: #fff;
+    color: var(--side-text);
 }
 
 .button {
-    color: white;
+    color: var(--side-text);
 }
 
 .button.view-button {
-    background-color: #009688;
+    background-color: var(--button-primary);
 }
 
 .button.view-button:hover {
-    background-color: #00a699;
+    background-color: var(--button-hover);
 }
 
 .button.execute-button,
 .button.save-button {
-    background-color: #4caf50;
+    background-color: var(--button-success-primary);
 }
 
 .button.execute-button:hover,
 .button.save-button {
-    background-color: #46a049;
+    background-color: var(--button-success-hover);
 }
 
 .button.remove-button {
-    background-color: #f44336;
+    background-color: var(--button-remove-primary);
 }
 
 .button.remove-button:hover {
-    background-color: #d32f2f;
+    background-color: var(--button-remove-hover);
 }
 
 .button.edit-button {
-    background-color: #007bff;
+    background-color: var(--button-primary);
 }
 
 .button.edit-button:hover {
-    background-color: #0066d3;
+    background-color: var(--button-hover);
 }
 
 .message {
@@ -454,21 +471,21 @@ td {
 
 .clear-history-button {
     padding: 8px 15px;
-    background-color: #f44336;
-    color: white;
+    background-color: var(--button-remove-primary);
+    color: var(--side-text);
     border: none;
     cursor: pointer;
     margin-bottom: 10px;
 }
 
 .clear-history-button:hover {
-    background-color: #d32f2f;
+    background-color: var(--button-remove-hover);
 }
 
 .no-history-message {
     font-size: 1.2rem;
     font-style: italic;
-    color: #555;
+    color: var(--border);
 }
 
 .no-history-message::before {
@@ -500,7 +517,7 @@ td {
 .no-bookmark-message {
     font-size: 1.2rem;
     font-style: italic;
-    color: #555;
+    color: var(--border);
 }
 
 .no-bookmark-message::before {
@@ -519,7 +536,7 @@ td {
     height: 100vh;
     width: 100vw;
     font-family: Arial, sans-serif;
-    color: #333;
+    color: var(--border);
 }
 
 #error-page h1 {
@@ -534,16 +551,16 @@ td {
 
 #error-page a {
     font-size: 1.2rem;
-    color: white;
+    color: var(--side-text);
     text-decoration: none;
 }
 
 #error-page button {
     cursor: pointer;
-    color: white;
-    background-color: #007bff;
+    color: var(--side-text);
+    background-color: var(--button-primary);
 }
 
 #error-page button:hover {
-    background-color: #0066d3;
+    background-color: var(--button-hover);
 }

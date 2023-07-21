@@ -13,16 +13,16 @@ const BookmarkItem = ({ query, name, onAction }) => {
             </div>
             <div className="button-container">
                 <button
-                    className="button remove-button"
-                    onClick={() => onAction("remove", query)}
-                >
-                    Remove
-                </button>
-                <button
                     className="button view-button"
                     onClick={() => onAction("view", query)}
                 >
                     View
+                </button>
+                <button
+                    className="button edit-button"
+                    onClick={() => onAction("edit", query)}
+                >
+                    Edit Name
                 </button>
                 <button
                     className="button execute-button"
@@ -30,11 +30,12 @@ const BookmarkItem = ({ query, name, onAction }) => {
                 >
                     Execute
                 </button>
+
                 <button
-                    className="button edit-button"
-                    onClick={() => onAction("edit", query)}
+                    className="button remove-button"
+                    onClick={() => onAction("remove", query)}
                 >
-                    Edit Name
+                    Remove
                 </button>
             </div>
         </div>
