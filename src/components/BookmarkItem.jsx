@@ -3,9 +3,10 @@ const BookmarkItem = ({ query, name, onAction }) => {
         <div className="bookmark-item">
             <div className="bookmark-info">
                 <p className="bookmark-name">
-                    {name || query.length > 20
-                        ? query.substring(0, 20) + "..."
-                        : query}
+                    {name ||
+                        (query.length > 20
+                            ? query.substring(0, 20) + "..."
+                            : query)}
                 </p>
             </div>
             <button
