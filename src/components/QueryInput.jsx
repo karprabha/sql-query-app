@@ -6,7 +6,11 @@ const QueryInput = ({ onExecute, onClear }) => {
     const [isValidQuery, setIsValidQuery] = useState(false);
     const [selectedPredefinedQuery, setSelectedPredefinedQuery] = useState("");
 
-    const predefinedQueries = ["q1", "q2"];
+    const predefinedQueries = [
+        "(small-dataset) SELECT * FROM Employee",
+        "(medium-dataset) SELECT * FROM Student",
+        "(large-dataset) SELECT * FROM Product",
+    ];
 
     const handleQueryChange = (event) => {
         const inputValue = event.target.value;

@@ -4,11 +4,11 @@ import productData from "../data/__mocks__/productData.json";
 
 const getQueryData = (query) => {
     switch (query) {
-        case "q1":
+        case "(small-dataset) SELECT * FROM Employee":
             return employeeData;
-        case "q2":
+        case "(medium-dataset) SELECT * FROM Student":
             return studentRecords;
-        case "q3":
+        case "(large-dataset) SELECT * FROM Product":
             return productData;
         default:
             return null;
