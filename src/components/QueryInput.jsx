@@ -11,7 +11,8 @@ const QueryInput = ({ onExecute, onClear }) => {
         setIsValidQuery(isQueryValid(inputValue));
     };
 
-    const handleExecute = () => {
+    const handleExecute = (event) => {
+        event.preventDefault();
         if (isValidQuery) {
             onExecute(query);
         }
@@ -24,25 +25,31 @@ const QueryInput = ({ onExecute, onClear }) => {
     };
 
     return (
-        <div className="input-container">
-            <textarea
-                value={query}
-                onChange={handleQueryChange}
-                placeholder="Enter your SQL query..."
-                className={isValidQuery ? "valid" : "invalid"}
-            />
-            <button
-                onClick={handleExecute}
-                className={
-                    isValidQuery ? "execute-button valid" : "execute-button"
-                }
-            >
-                Execute
-            </button>
-            <button onClick={handleClear} className="clear-button">
-                Clear
-            </button>
-        </div>
+        <form onSubmit={handleExecute}>
+            <div className="input-container">
+                <textarea
+                    value={query}
+                    onChange={handleQueryChange}
+                    placeholder="Enter your SQL query..."
+                    className={isValidQuery ? "valid" : "invalid"}
+                />
+                <button
+                    type="submit"
+                    className={
+                        isValidQuery ? "execute-button valid" : "execute-button"
+                    }
+                >
+                    Execute
+                </button>
+                <button
+                    type="button"
+                    onClick={handleClear}
+                    className="clear-button"
+                >
+                    Clear
+                </button>
+            </div>
+        </form>
     );
 };
 
