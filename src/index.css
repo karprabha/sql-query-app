@@ -5,12 +5,12 @@
 
 :root {
     --primary: #2c3e50;
-    --primary-light: #82a3c7;
+    --primary-light: #53697f;
     --side-text: #ffffff;
     --highlight: #3498db;
     --hover: #3a5169;
-    --hover-light: #6889ab;
-    --border: #34495e;
+    --hover-light: #44586b;
+    --border: #3c5268;
     --code-light: #f9f9f9;
     --border-light: #ccc;
     --active-link: #e74c3c;
@@ -83,6 +83,8 @@ h2 {
 
 /* Header */
 #header {
+    padding-top: 3px;
+    padding-left: 10px;
     background-color: var(--primary);
     grid-column: 1/3;
     color: var(--side-text);
@@ -95,6 +97,7 @@ h2 {
     background-color: var(--primary-light);
     border-right: solid 1px var(--border-light);
     display: flex;
+    color: var(--side-text);
     flex-direction: column;
 }
 
@@ -417,11 +420,11 @@ td {
 }
 
 .button.view-button {
-    background-color: var(--button-primary);
+    background-color: var(--hover-light);
 }
 
 .button.view-button:hover {
-    background-color: var(--button-hover);
+    background-color: var(--primary);
 }
 
 .button.execute-button,
@@ -443,11 +446,11 @@ td {
 }
 
 .button.edit-button {
-    background-color: var(--button-primary);
+    background-color: var(--hover-light);
 }
 
 .button.edit-button:hover {
-    background-color: var(--button-hover);
+    background-color: var(--primary);
 }
 
 .message {
