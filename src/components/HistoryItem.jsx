@@ -1,10 +1,13 @@
+import truncateString from "../utils/truncateString";
+
 const HistoryItem = ({ query, id, timestamp, onAction }) => {
+    const truncatedQuery = truncateString(query, 40);
     return (
         <div className="history-item">
             <div className="item-info">
                 <div>
-                    <strong>Query:</strong>{" "}
-                    {query.length > 20 ? query.substring(0, 20) + "..." : query}
+                    <strong>Query:</strong>
+                    {truncatedQuery}
                 </div>
                 <div>
                     <strong>Timestamp:</strong> {timestamp}

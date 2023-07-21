@@ -1,12 +1,14 @@
+import truncateString from "../utils/truncateString";
+
 const BookmarkItem = ({ query, name, onAction }) => {
+    const truncatedName = name ? truncateString(name, 40) : "";
+    const truncatedQuery = truncateString(query, 40);
+
     return (
         <div className="bookmark-item">
             <div className="bookmark-info">
                 <p className="bookmark-name">
-                    {name ||
-                        (query.length > 20
-                            ? query.substring(0, 20) + "..."
-                            : query)}
+                    {truncatedName || truncatedQuery}
                 </p>
             </div>
             <button
