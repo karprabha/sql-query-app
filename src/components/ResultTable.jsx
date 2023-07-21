@@ -46,16 +46,14 @@ const ResultTable = ({ data, query }) => {
     return (
         <div>
             <div className="button-container">
-                <button className="export-button">
-                    <CSVLink
-                        data={csvData.rows}
-                        headers={csvData.columns}
-                        filename={"exportedData.csv"}
-                        style={{ textDecoration: "none", color: "white" }}
-                    >
-                        Export
-                    </CSVLink>
-                </button>
+                <CSVLink
+                    data={csvData.rows}
+                    headers={csvData.columns}
+                    filename={"exportedData.csv"}
+                    style={{ textDecoration: "none", color: "white" }}
+                >
+                    <button className="export-button">Export</button>
+                </CSVLink>
                 {renderBookmarkButton()}
             </div>
             {data.rows.length > 80 ? (
