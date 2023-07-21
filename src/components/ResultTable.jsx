@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { CSVLink } from "react-csv";
 import TableHeader from "./TableHeader";
 import TableRow from "./TableRow";
 
@@ -36,10 +37,23 @@ const ResultTable = ({ data, query }) => {
         );
     };
 
+    const csvData = {
+        columns: data.columns,
+        rows: data.rows,
+    };
+
     return (
         <div>
             <div className="button-container">
-                <button className="export-button">Export</button>
+                <button className="export-button">
+                    <CSVLink
+                        data={csvData.rows}
+                        headers={csvData.columns}
+                        filename={"exportedData.csv"}
+                    >
+                        Export
+                    </CSVLink>
+                </button>
                 {renderBookmarkButton()}
             </div>
             <div className="result-table-container">
