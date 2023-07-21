@@ -11,6 +11,7 @@ const BookmarkItem = ({ query, name, onAction }) => {
                 Remove
             </button>
             <button onClick={() => onAction("view", query)}>View</button>
+            <button onClick={() => onAction("execute", query)}>Execute</button>
             <button onClick={() => onAction("edit", query)}>Edit Name</button>
         </div>
     );

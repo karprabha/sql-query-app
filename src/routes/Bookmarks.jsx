@@ -4,12 +4,14 @@ import ResultTable from "../components/ResultTable";
 import getQueryData from "../utils/getQueryData";
 import BookmarkItem from "../components/BookmarkItem";
 import EditBookmark from "../components/EditBookmark";
+import QueryView from "../components/QueryView";
 
 const Bookmarks = () => {
     const [results, setResults] = useState(null);
     const [bookmarks, setBookmarks] = useState([]);
     const [selectedQuery, setSelectedQuery] = useState(null);
     const [editModal, setEditModal] = useState(false);
+    const [viewQueryModal, setViewQueryModal] = useState(false);
 
     useEffect(() => {
         const bookmarkData =
@@ -24,6 +26,9 @@ const Bookmarks = () => {
                 break;
             case "view":
                 viewQuery(query);
+                break;
+            case "execute":
+                executeQuery(query);
                 break;
             case "edit":
                 showEditModal(query);
@@ -41,9 +46,22 @@ const Bookmarks = () => {
         setBookmarks(updatedBookmarks);
     };
 
+    const executeQuery = (query) => {
+        setSelectedQuery(query);
+        setEditModal(false);
+        setViewQueryModal(false);
+    };
+
     const viewQuery = (query) => {
         setSelectedQuery(query);
         setEditModal(false);
+        setViewQueryModal(true);
+    };
+
+    const showEditModal = (query) => {
+        setSelectedQuery(query);
+        setEditModal(true);
+        setViewQueryModal(false);
     };
 
     useEffect(() => {
@@ -58,11 +76,6 @@ const Bookmarks = () => {
         setResults(null);
     };
 
-    const showEditModal = (query) => {
-        setSelectedQuery(query);
-        setEditModal(true);
-    };
-
     const handleRenameBookmark = (newName) => {
         const updatedBookmarks = bookmarks.map((bookmark) =>
             bookmark.query === selectedQuery
@@ -75,8 +88,12 @@ const Bookmarks = () => {
         setSelectedQuery(null);
     };
 
-    const shouldShowEditModal = () => selectedQuery && editModal;
-    const shouldShowViewModal = () => selectedQuery && !editModal;
+    const shouldShowEditModal = () =>
+        selectedQuery && editModal && !viewQueryModal;
+    const shouldShowViewModal = () =>
+        selectedQuery && !editModal && viewQueryModal;
+    const shouldShowExecuteModal = () =>
+        selectedQuery && !editModal && !viewQueryModal;
 
     return (
         <div className="bookmark-container">
@@ -95,6 +112,12 @@ const Bookmarks = () => {
             ) : (
                 <p>No bookmarked queries yet.</p>
             )}
+            {shouldShowViewModal() && (
+                <Modal query={selectedQuery} onClose={handleCloseModal}>
+                    <QueryView query={selectedQuery} />
+                </Modal>
+            )}
+
             {shouldShowEditModal() && (
                 <Modal onClose={() => setSelectedQuery(null)}>
                     <EditBookmark
@@ -106,7 +129,7 @@ const Bookmarks = () => {
                     />
                 </Modal>
             )}
-            {shouldShowViewModal() && (
+            {shouldShowExecuteModal() && (
                 <Modal query={selectedQuery} onClose={handleCloseModal}>
                     {results && (
                         <ResultTable data={results} query={selectedQuery} />
