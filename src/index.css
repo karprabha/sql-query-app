@@ -606,19 +606,34 @@ td {
 
 
     #sidebar {
-        width: 0;
-        display: none;
+        position: fixed;
+        top: 55px;
+        max-width: 0;
+        height: 100%;
+        display: flex;
+        z-index: 1;
+        transition: max-width 0.3s ease;
     }
 
     #sidebar.open-sidebar {
-        position: fixed;
-        top: 55px;
-        width: 18rem;
-        height: 100%;
-        display: flex;
-        color: white;
-        z-index: 1;
+        max-width: 18rem;
+        transition: max-width 0.3s ease;
     }
+
+    #sidebar nav a.active,
+    #sidebar nav a.pending {
+
+        visibility: hidden;
+        opacity: 0;
+        transition: visibility 0s, opacity 0.3s linear;
+    }
+
+    #sidebar.open-sidebar nav a.active,
+    #sidebar.open-sidebar nav a.pending {
+        visibility: visible;
+        opacity: 1;
+    }
+
 
     #detail {
         margin-left: 0;
