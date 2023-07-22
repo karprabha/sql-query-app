@@ -61,7 +61,7 @@ I used Google PageSpeed Insights to measure the performance of my application. T
 
 ### PageSpeed Insights Metrics:
 
-![image](/docs/images/google-pagespeed-insights.png)
+![image](docs/images/google-pagespeed-insights.png)
 
 ## Performance Optimization
 
@@ -70,4 +70,4 @@ I used Google PageSpeed Insights to measure the performance of my application. T
 
 ### React Profiler Metrics:
 
-![image](/docs/images/react-profiler-virtualized-table-performance.png)
+![image](docs/images/react-profiler-virtualized-table-performance.png)
