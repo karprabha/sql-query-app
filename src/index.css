@@ -630,16 +630,16 @@ td {
         transition: max-width 0.3s ease;
     }
 
-    #sidebar nav a.active,
-    #sidebar nav a.pending {
+    #sidebar nav a,
+    #sidebar nav a {
 
         visibility: hidden;
         opacity: 0;
         transition: visibility 0s, opacity 0.3s linear;
     }
 
-    #sidebar.open-sidebar nav a.active,
-    #sidebar.open-sidebar nav a.pending {
+    #sidebar.open-sidebar nav a,
+    #sidebar.open-sidebar nav a {
         visibility: visible;
         opacity: 1;
     }
