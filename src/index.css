@@ -589,6 +589,16 @@ td {
     }
 }
 
+@media (max-width: 900px) {
+    .bookmark-item-button {
+        min-width: 200px;
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        ;
+        gap: 10px;
+    }
+}
+
 @media (max-width: 767px) {
     #hamburger {
         display: inline;
@@ -633,7 +643,6 @@ td {
         visibility: visible;
         opacity: 1;
     }
-
 
     #detail {
         margin-left: 0;

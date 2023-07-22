@@ -11,7 +11,7 @@ const BookmarkItem = ({ query, name, onAction }) => {
                     {truncatedName || truncatedQuery}
                 </p>
             </div>
-            <div className="button-container">
+            <div className="button-container bookmark-item-button">
                 <button
                     className="button view-button"
                     onClick={() => onAction("view", query)}
