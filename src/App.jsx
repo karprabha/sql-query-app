@@ -4,11 +4,7 @@ import { Outlet, NavLink } from "react-router-dom";
 function App() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-    const toggleSidebar = () => {
-        console.log("hi");
-        setIsSidebarOpen(!isSidebarOpen);
-    };
-
+    const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
     const resolveNavLinkClassName = ({ isActive, isPending }) =>
         isActive ? "active" : isPending ? "pending" : "";
 
