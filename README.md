@@ -9,6 +9,7 @@ SQL Query App is a user-friendly web-based application that enables users to inp
 ## Features
 
 -   **SQL Query Execution**: Users can input SQL queries in the application, and the system will execute them, displaying the corresponding results in a table format.
+
 -   **Custom Field Validations**: The application performs custom field validations to ensure that users input valid data and format their queries correctly.
 
 -   **Virtualization**: To improve performance when dealing with large data sets, the application employs virtualization techniques, ensuring smooth rendering and handling of extensive query results.
@@ -27,37 +28,24 @@ SQL Query App is a user-friendly web-based application that enables users to inp
 
 ### Technologies Used
 
--   **Vite**: Used to set up the React template and provide a fast development environment.
-
--   **React**: The JavaScript library used for building the user interface and managing the application's component-based structure.
-
--   **GitHub**: Used for version control and project management, allowing for collaboration and sharing of the codebase with others.
-
--   **Netlify**: The application has been deployed using Netlify.
-
--   **Local Storage**: Used to store query history and bookmarks locally on the user's device.
-
--   **Virtualization**: Employed to optimize performance when dealing with large data sets, ensuring smooth rendering and handling of extensive query results.
-
--   **JavaScript (ES6+)**: Used for implementing various functionalities and interactions in the application.
--   **CSS**: Used for styling the application and creating a visually appealing user interface.
-
--   **HTML**: The standard markup language used for structuring and presenting the application's content.
+-   "Vite"
+-   "React"
+-   "GitHub"
+-   "Netlify"
+-   "Local Storage"
+-   "Virtualization"
+-   "JavaScript (ES6+)"
+-   "CSS"
 
 ### Project Dependencies
 
 The following external libraries and packages are used in this project:
 
 -   **React**: A JavaScript library for building user interfaces.
-
 -   **react-csv**: A library for exporting data to CSV format in React applications.
-
 -   **react-dom**: Provides DOM-specific methods for React components.
-
 -   **react-router-dom**: A collection of navigation components for React applications.
-
 -   **react-virtualized-auto-sizer**: A wrapper component that automatically resizes its child to fit the available width and height.
-
 -   **react-window**: A library for efficiently rendering large lists and tabular data in React applications.
 -   **uuid**: A library for generating and working with universally unique identifiers (UUIDs).
 
@@ -73,7 +61,7 @@ I used Google PageSpeed Insights to measure the performance of my application. T
 
 ### PageSpeed Insights Metrics:
 
-![image](./docs/images/google-pagespeed-insights.png)
+![image](docs/images/google-pagespeed-insights.png)
 
 ## Performance Optimization
 
@@ -82,4 +70,4 @@ I used Google PageSpeed Insights to measure the performance of my application. T
 
 ### React Profiler Metrics:
 
-![image](./docs/images/react-profiler-virtualized-table-performance.png)
+![image](docs/images/react-profiler-virtualized-table-performance.png)
