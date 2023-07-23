@@ -226,6 +226,18 @@ textarea {
     box-sizing: border-box;
 }
 
+
+.error-message {
+    color: var(--button-remove-primary);
+    font-size: 14px;
+    margin-top: 5px;
+    background-color: #ffe5e5;
+    padding: 5px 10px;
+    border: 1px solid #ffcccc;
+    border-radius: 5px;
+}
+
+
 select {
     padding: 5px;
     border: 1px solid var(--border-light);

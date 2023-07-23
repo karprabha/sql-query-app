@@ -5,6 +5,7 @@ const QueryInput = ({ onExecute, onClear }) => {
     const [query, setQuery] = useState("");
     const [isValidQuery, setIsValidQuery] = useState(false);
     const [selectedPredefinedQuery, setSelectedPredefinedQuery] = useState("");
+    const [errorMessage, setErrorMessage] = useState("");
 
     const predefinedQueries = [
         "(small-dataset) SELECT * FROM Employee",
@@ -15,7 +16,9 @@ const QueryInput = ({ onExecute, onClear }) => {
     const handleQueryChange = (event) => {
         const inputValue = event.target.value;
         setQuery(inputValue);
-        setIsValidQuery(isQueryValid(inputValue));
+        setIsValidQuery(isQueryValid(inputValue).valid);
+        if (isQueryValid(inputValue).valid) setErrorMessage("");
+        else setErrorMessage(isQueryValid(inputValue).errorMessage);
     };
 
     const handleExecute = (event) => {
@@ -27,6 +30,7 @@ const QueryInput = ({ onExecute, onClear }) => {
 
     const handleClear = () => {
         setQuery("");
+        setErrorMessage("");
         setIsValidQuery(false);
         onClear();
     };
@@ -36,7 +40,9 @@ const QueryInput = ({ onExecute, onClear }) => {
 
         setSelectedPredefinedQuery(selectedQuery);
         setQuery(selectedQuery);
-        setIsValidQuery(isQueryValid(selectedQuery));
+        setIsValidQuery(isQueryValid(selectedQuery).valid);
+        if (isQueryValid(selectedQuery).valid) setErrorMessage("");
+        else setErrorMessage(isQueryValid(selectedQuery).errorMessage);
     };
 
     return (
@@ -47,6 +53,12 @@ const QueryInput = ({ onExecute, onClear }) => {
                     onChange={handleQueryChange}
                     placeholder="Enter your SQL query..."
                 />
+                <div className="button-container">
+                    {errorMessage && (
+                        <p className="error-message">{errorMessage}</p>
+                    )}
+                </div>
+
                 <div className="input-options-and-btns">
                     <div className="input-btn-contianer">
                         <button
