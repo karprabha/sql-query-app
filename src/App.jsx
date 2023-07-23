@@ -3,8 +3,12 @@ import { Outlet, NavLink } from "react-router-dom";
 
 function App() {
     const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+    const [isOverlayOpen, setIsOverlayOpen] = useState(false);
 
-    const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+    const toggleSidebar = () => {
+        setIsOverlayOpen(!isSidebarOpen);
+        setIsSidebarOpen(!isSidebarOpen);
+    };
     const resolveNavLinkClassName = ({ isActive, isPending }) =>
         isActive ? "active" : isPending ? "pending" : "";
 
@@ -18,6 +22,11 @@ function App() {
                     </button>
                 </div>
             </div>
+
+            {isOverlayOpen && (
+                <div className="sidebar-overlay" onClick={toggleSidebar} />
+            )}
+
             <div
                 id="sidebar"
                 className={`${isSidebarOpen ? "open-sidebar" : ""}`}
