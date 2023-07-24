@@ -1,7 +1,7 @@
 # SQL Query App
 
 -   Live: [SQL Query App](https://transcendent-malabi-550033.netlify.app/)
--   Detail Document: [Document](https://drive.google.com/file/d/1lpj5Na0q32NfKpMiXN9mAmU0ucAZcvd_/view?usp=sharing)
+-   Detail Document: [Document](https://drive.google.com/file/d/1FrzIdQ5E35__rc-iZR8vIvY0mniLoHtL/view?usp=sharing)
 
 ## Description
 
